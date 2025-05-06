@@ -1,26 +1,32 @@
 #!/bin/bash
 
-# Update package lists
-sudo apt update &> /dev/null
+# Update and upgrade system
+sudo apt update
+sudo apt upgrade -y
 
-# Upgrade existing packages
-sudo apt upgrade -y &> /dev/null
-
-# Install snap of VSCode
+# Install VSCode
 sudo snap install code --classic
 
-# Install Apache2 web server
-sudo apt install apache2 -y &> /dev/null
+# Install Apache2
+sudo apt install apache2 -y
 
-# Install MySQL server
-sudo apt install mysql-server -y &> /dev/null
+# Install MySQL
+sudo apt install mysql-server -y
 
-# Secure MySQL installation (prompts for password)
-sudo mysql_secure_installation
+# Set MySQL root password and secure installation
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Root@123'; FLUSH PRIVILEGES;"
 
-# Install PHP and related modules
-sudo apt install php libapache2-mod-php php-mysql -y &> /dev/null
+# Secure MySQL: remove anonymous users, disallow remote root login, remove test DB
+sudo mysql -u root -pRoot@123 <<EOF
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+FLUSH PRIVILEGES;
+EOF
 
-# Set more permissive permissions on web root
+# Install PHP
+sudo apt install php libapache2-mod-php php-mysql -y
+
+# Set ownership of web root
 sudo chown -R $USER:$USER /var/www/html/
-
