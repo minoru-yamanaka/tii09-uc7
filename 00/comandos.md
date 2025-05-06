@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu
 # Update and upgrade system
 sudo apt update
 sudo apt upgrade -y
