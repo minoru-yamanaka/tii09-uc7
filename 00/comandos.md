@@ -22,4 +22,5 @@ sudo mysql_secure_installation
 sudo apt install php libapache2-mod-php php-mysql -y &> /dev/null
 
 # Set more permissive permissions on web root
-sudo chmod -R 755 /var/www
+sudo chown -R $USER:$USER /var/www/html/
+
