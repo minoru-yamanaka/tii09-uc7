@@ -6,12 +6,20 @@ Use funções para:
 - Inserir os produtos no array
 -->
 <?php
-$produtos = [];
+session_start();
 
-$nome = $_GET['nome'];
-$preco = (float) $_GET['preco'];
+if(!isset($_SESSION['produtos'])) {
+    $_SESSION['produtos'] = [];
+}
 
-$produtos[] = ["nome" => $nome, "preco" => $preco];
+if (isset($_GET['nome']) && isset($_GET['preco'])) {
+    $nome = $_GET['nome'];
+    $preco = (float) $_GET['preco'];    
+
+    $_SESSION['produtos'][] = ["nome" => $nome, "preco" => $preco];
+}
+
+$produtos = $_SESSION['produtos'];
 
 ?>
 
