@@ -24,6 +24,11 @@ class Produto {
             throw(new Error("Invalid Name"));
         }
     }
+
+    public function __toString()
+    {
+        return "Nome: $this->nome, Preço: $this->preco <br>";
+    }
 }
 
 $p1 = new Produto('Abobora', 5.2);
@@ -35,6 +40,8 @@ echo "<br>";
 echo ($p1->setNome("Abóbora"));
 echo "<br>";
 echo ($p1->getNome() . " - " . $p1->getPreco());
+echo "<br>";
+echo ($p1);
 
 # Prodcedural
 /*
