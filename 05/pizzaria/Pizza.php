@@ -2,7 +2,7 @@
 
 class Pizza
 {
-    private int $id;
+    private $id;
     private string $sabor;
     private string $tamanho;
     private float $preco;
@@ -19,11 +19,11 @@ class Pizza
     {
         return $this->id;
     }
-    public function getSabor(): float
+    public function getSabor(): string
     {
         return $this->sabor;
     }
-    public function getTamanho(): float
+    public function getTamanho(): string
     {
         return $this->tamanho;
     }
