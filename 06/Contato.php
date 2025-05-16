@@ -5,20 +5,22 @@ class Contato
     private ?int $id;
     private string $nome;
 
-    public function __construct( ?int $id, string $nome)
+    public function __construct(?int $id, string $nome)
     {
         $this->id = $id;
         $this->nome = $nome;
     }
 
-    // Buscar valores 
-    public function getId(): ?int {return $this->id; }
-    public function getNome(): string {return $this->nome; }
+    // Buscar Valores
+    public function getId(): ?int { return $this->id; }
+    public function getNome(): string { return $this->nome; }
 
-    // Inserir valores 
-    public function setNome(string $novoNome) {$this->nome=$novoNome;}
+    // Inserir Valores
+    public function setNome(string $novoNome) 
+    { 
+        $this->nome = $novoNome; 
+    }
 }
-
 
 // Teste para saber se está funcionando 
 // $cont1 = new Contato( 1 , "Fulano");
