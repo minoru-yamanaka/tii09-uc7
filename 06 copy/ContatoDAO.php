@@ -25,6 +25,21 @@ class ContatoDAO
         return $contatos;
     }
 
+    public function getById(int $id): ?Contato
+    {
+        $stmt = $this->db->prepare("SELECT * FROM agenda.contatos WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row? new Contato($row['id'], 
+                            $row['nome'], 
+                            $row['telefone'],
+                            $row['email'],
+                            $row['endereco'])
+                            : null; 
+    }
+
     public function create(Contato $contato) 
     {
         $sql = "INSERT INTO contatos (nome, telefone, email, endereco) VALUES 
